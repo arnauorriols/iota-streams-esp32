@@ -7,25 +7,25 @@ At the time of writing (13-08-2021), this PoC is capable of running in a QEMU ES
 - [x] Create bucket transport (ie store messages in heap memory using HashMap)
 - [x] Create instance of Author
   - Generate ed25519 and x25519 key pairs
-- [] Create instance of Subscriber
+- [ ] Create instance of Subscriber
   - Generate ed25519 and x25519 key pairs
 - [x] Author send announcement message
 	- Sign with ed25519
-- [] Subscriber send subscribe message
+- [ ] Subscriber send subscribe message
 	- Generate random unsubscription key
 	- Perform Diffie-Hellman exchange
 	- Wrap unsubscription key with DH shared secret
-- [] Author send Keyload message (note: without subscribers this does kind of nothing)
+- [ ] Author send Keyload message (note: without subscribers this does kind of nothing)
 	- [x] Generate random encryption key
-	- [] Perform Diffie-Hellman exchange 
-	- [] Wrap encryption key with DH shared secret
-- [] Subscriber receive keyload message
+	- [ ] Perform Diffie-Hellman exchange 
+	- [ ] Wrap encryption key with DH shared secret
+- [ ] Subscriber receive keyload message
   - Perform Diffie-Hellman exchange
-	- Unwrap encryption key with DH shared secret
+  - Unwrap encryption key with DH shared secret
 - [x] Author send signed packet (x2)
   - Encrypt masked payload with encryption key
-	- Sign with ed25519
-- [] Subscriber receives signed packets
+  - Sign with ed25519
+- [ ] Subscriber receives signed packets
 
 ## Limitations
 - For still uninvestigated (but seamingly obvious) reasons, channel address is 32 bytes long, the rest gets padded with 0. 
