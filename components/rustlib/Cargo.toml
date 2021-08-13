@@ -1,0 +1,31 @@
+[package]
+name = "rustlib"
+version = "0.1.0"
+authors = ["Arnau Orriols <arnau.orriols@iota.org>"]
+edition = "2018"
+
+[lib]
+crate-type = ["staticlib"]
+
+[build-dependencies]
+bindgen = "*"
+cbindgen = "*"
+
+[features]
+std = []
+
+[dependencies]
+iota-streams-app-channels = {git = "https://github.com/arnauorriols/streams", branch = "no-std", default-features = false, features = ["std", "tangle"]}
+cty = "*"
+rand = { version = "0.7", default-features = false, features = ["std"]}
+hex = "*"
+
+[profile.release]
+opt-level = "s"
+lto = "thin"
+debug = true
+
+rustflags = [
+  # https://docs.rust-embedded.org/book/unsorted/speed-vs-size.html?highlight=size#optimize-for-size
+  "-C", "inline-threshold=275",
+]
