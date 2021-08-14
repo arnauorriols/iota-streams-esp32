@@ -48,6 +48,9 @@ At the time of writing (13-08-2021), this PoC is capable of running in a QEMU ES
 	- Technically `rand::rngs::StdRng` or `rand::rngs::OsRng` work in `no_std` scenarios, provided that `getrandom` supports the target.
 	- `rand` is being used only when sending keyload and subscribe messages. Therefore, if those don't need to be sent, Streams can be used
 	  without `std` feature.
+- `chrono` has compatibility issues with this target, and will require a patch. Streams dependency over `chrono` was a legacy and has been
+  removed, thus no further investigation has been performed. All I can say at this moment is that it has to do with [`struct tm` not including
+	`tm_gmtoff` in `newlib` variant of `libc`][tm_gmtoff missing]
 - opt-level 'z' does not work for some reason; the program freezes few seconds after starting, deterministically. Executable size is not much
 	smaller than opt-level 's' anyhow. However, remains to be seen if using opt-level 1-3 solves the heap corruption issues mentioned above.
 
@@ -93,3 +96,4 @@ Rust source code is in `components/rustlib`. Main function is in `main/main.c`. 
 [github-issue-thread_rng]: https://github.com/espressif/rust-esp32-example/issues/23
 [docker espressif/idf-rust]: https://hub.docker.com/r/espressif/idf-rust
 [docker mluis/qemu-esp32]: https://hub.docker.com/r/mluis/qemu-esp32
+[tm_gmtoff missing]: https://github.com/rust-lang/libc/blob/e1eb9721dc4534cea84e9e3bf591e7cb257e679c/src/unix/newlib/mod.rs#L105-L115
