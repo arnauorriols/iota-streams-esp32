@@ -19,13 +19,17 @@ iota-streams-app-channels = {git = "https://github.com/arnauorriols/streams", br
 cty = "*"
 rand = { version = "0.7", default-features = false, features = ["std"]}
 hex = "*"
+getrandom = "0.1.6"
 
 [profile.release]
 opt-level = "s"
 lto = "thin"
 debug = true
 
-rustflags = [
-  # https://docs.rust-embedded.org/book/unsorted/speed-vs-size.html?highlight=size#optimize-for-size
-  "-C", "inline-threshold=275",
-]
+[patch.crates-io]
+getrandom = { path = "patches/getrandom" }
+
+# rustflags = [
+#   # https://docs.rust-embedded.org/book/unsorted/speed-vs-size.html?highlight=size#optimize-for-size
+#   "-C", "inline-threshold=275",
+# ]
