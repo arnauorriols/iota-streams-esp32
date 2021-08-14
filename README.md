@@ -78,6 +78,7 @@ See [runtime output].
 Rust source code is in `components/rustlib`. Main function is in `main/main.c`. C lib is in `components/clib`.
 
 # TODO
+- [ ] Test complete flow with SingleBranching
 - [ ] Fix issues in subscriber to test the complete flow
 - [ ] Test in real ESP32 device
 - [ ] Test agaist Tangle using `sync-client`
