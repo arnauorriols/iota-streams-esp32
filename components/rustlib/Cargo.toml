@@ -20,6 +20,8 @@ cty = "*"
 rand = { version = "0.7", default-features = false, features = ["std"]}
 hex = "*"
 getrandom = "0.1.6"
+embedded-executor = { version = "0.6", default-features = false, features = ["std"] }
+lock_api = "0.4.5"
 
 [profile.release]
 opt-level = "s"
